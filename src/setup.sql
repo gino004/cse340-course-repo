@@ -176,3 +176,67 @@ VALUES
     '2026-08-12'
 );
 
+CREATE TABLE category (
+
+    category_id SERIAL PRIMARY KEY,
+
+    name VARCHAR(100) NOT NULL UNIQUE
+
+);
+
+
+CREATE TABLE project_category (
+
+    project_id INTEGER NOT NULL,
+
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project
+        FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+
+    CONSTRAINT fk_category
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+
+);
+
+INSERT INTO category (name)
+VALUES
+('Environmental'),
+('Educational'),
+('Community Service');
+
+INSERT INTO project_category (
+    project_id,
+    category_id
+)
+VALUES
+
+-- Environmental
+(1, 1),
+(2, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+
+-- Educational
+(6, 2),
+(8, 2),
+(10, 2),
+(15, 2),
+
+-- Community Service
+(1, 3),
+(4, 3),
+(11, 3),
+(12, 3),
+(13, 3),
+(14, 3),
+(15, 3);
