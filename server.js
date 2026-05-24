@@ -68,7 +68,8 @@ app.use((err, req, res, next) => {
 			? 'Page Not Found'
 			: 'Server Error',
 		error: err.message,
-		stack: err.stack
+		stack: err.stack,
+		NODE_ENV: process.env.NODE_ENV,
 	};
 
 	// Render the appropriate error template
