@@ -2,9 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
-import { getAllOrganizations } from './src/models/organizations.js';
-import { getAllProjects } from './src/models/projects.js';
-import { getAllCategories } from './src/models/categories.js';
+import router from './src/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,49 +42,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-/**
-	* Routes
-	*/
-app.get('/', async (req, res) => {
-	const title = 'Home';
-	res.render('home', { title });
-});
-
-app.get('/organizations', async (req, res) => {
-	const organizations = await getAllOrganizations();
-	const title = 'Our Partner Organizations';
-	res.render('organizations', { title, organizations });
-});
-
-app.get('/projects', async (req, res) => {
-	const projects = await getAllProjects();
-	const title = 'Service Projects';
-	res.render('projects', { title, projects });
-});
-
-app.get('/categories', async (req, res) => {
-	const categories = await getAllCategories();
-	const title = 'Service Project Categories';
-	res.render('categories', { title, categories });
-
-});
-
-// Test route for 500 errors
-app.get('/test-error', (req, res, next) => {
-	const err = new Error('This is a test error');
-	err.status = 500;
-	next(err);
-});
-
-app.listen(PORT, async () => {
-	try {
-		await testConnection();
-		console.log(`Server is running at http://127.0.0.1:${PORT}`);
-		console.log(`Environment: ${NODE_ENV}`);
-	} catch (error) {
-		console.error('Error connecting to the database:', error);
-	}
-});
+app.use(router);
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {
@@ -117,4 +73,15 @@ app.use((err, req, res, next) => {
 
 	// Render the appropriate error template
 	res.status(status).render(`errors/${template}`, context);
+});
+
+//	Start the server after testing the database connection
+app.listen(PORT, async () => {
+	try {
+		await testConnection();
+		console.log(`Server is running at http://127.0.0.1:${PORT}`);
+		console.log(`Environment: ${NODE_ENV}`);
+	} catch (error) {
+		console.error('Error connecting to the database:', error);
+	}
 });
