@@ -176,6 +176,10 @@ VALUES
     '2026-08-12'
 );
 
+-- ========================================
+-- Create category table
+-- ========================================
+
 CREATE TABLE category (
 
     category_id SERIAL PRIMARY KEY,
@@ -184,6 +188,9 @@ CREATE TABLE category (
 
 );
 
+-- ========================================
+-- Create project_category table
+-- ========================================
 
 CREATE TABLE project_category (
 
@@ -203,11 +210,19 @@ CREATE TABLE project_category (
 
 );
 
+-- ========================================
+-- Insert sample data: Categories
+-- ========================================
+
 INSERT INTO category (name)
 VALUES
 ('Environmental'),
 ('Educational'),
 ('Community Service');
+
+-- ========================================
+-- Insert sample data: Project Categories
+-- ========================================
 
 INSERT INTO project_category (
     project_id,
