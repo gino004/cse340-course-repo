@@ -140,3 +140,24 @@ footer {
  }
 }
 
+.flash-message {
+
+ padding: 1rem;
+
+ margin: 1rem;
+
+ border-radius: 5px;
+
+ font-weight: bold;
+
+}
+
+.flash-success {
+
+ background-color: #d4edda;
+
+ color: #155724;
+
+ border: 1px solid #c3e6cb;
+
+}

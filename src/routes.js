@@ -1,8 +1,10 @@
 import express from 'express';
 
+//	Import controller functions for handling requests:
+
 import { showHomePage } from './controllers/index.js';
 
-import { showOrganizationsPage, showOrganizationDetailsPage } from './controllers/organizations.js';
+import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm } from './controllers/organizations.js';
 
 import { showProjectsPage, showProjectDetailsPage } from './controllers/projects.js';
 
@@ -12,11 +14,17 @@ import { triggerTestError } from './controllers/errors.js';
 
 const router = express.Router();
 
+//	Define routes and associate them with controller functions:
+
 router.get('/', showHomePage);
 
 router.get('/organizations', showOrganizationsPage);
 
 router.get('/organization/:id', showOrganizationDetailsPage);
+
+router.get('/new-organization', showNewOrganizationForm);
+
+router.post('/new-organization', processNewOrganizationForm);
 
 router.get('/projects', showProjectsPage);
 

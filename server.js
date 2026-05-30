@@ -1,4 +1,6 @@
 import express from 'express';
+import session from 'express-session';
+import flash from './src/middleware/flash.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
@@ -19,7 +21,24 @@ const app = express();
 	* Configure Express middleware
 	*/
 
-// Serve static files from the public directory
+// Allow Express to receive POST form data
+app.use(express.urlencoded({ extended: true }));
+
+// Allow Express to receive JSON data
+app.use(express.json());
+
+//	Configure session management
+app.use(session({
+	secret: process.env.SESSION_SECRET,
+	resave: false,
+	saveUninitialized: false
+})
+);
+
+//	Use custom flash message middleware
+app.use(flash);
+
+//	Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set EJS as the templating engine
