@@ -10,6 +10,7 @@
 			<%= project.title %>
 		</h2>
 
+		<!-- Description -->
 		<p>
 
 			Description:
@@ -17,6 +18,7 @@
 
 		</p>
 
+ <!-- Date -->
 		<p>
 
 			Date:
@@ -24,6 +26,7 @@
 
 		</p>
 
+ <!-- Location -->
 		<p>
 
 			Location:
@@ -31,6 +34,7 @@
 
 		</p>
 
+		<!-- Organization -->
 		<p>
 
 			Organization:
@@ -43,11 +47,12 @@
 
 		</p>
 
+		<!-- Categories -->
 		<p>
 
 			Categories:
 
-			<% categories.forEach(category=> { %>
+			<% categories.forEach((category, index)=> { %>
 
 				<a href="/category/<%= category.category_id %>">
 
@@ -55,7 +60,31 @@
 
 				</a>
 
-				<% }) %>
+				<%= index < categories.length - 1 ? ', ' : '' %>
+
+					<% }) %>
+
+		</p>
+
+		<!-- Edit Categories -->
+		<p>
+
+			<a href="/assign-categories/<%= project.project_id %>">
+
+				Edit Categories
+
+			</a>
+
+		</p>
+
+		<!-- Edit Project -->
+		<p>
+
+			<a href="/edit-project/<%= project.project_id %>">
+
+				Edit Project
+
+			</a>
 
 		</p>
 
