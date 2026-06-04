@@ -138,52 +138,24 @@ const showNewCategoryForm = async (
 
 };
 
-const processNewCategoryForm = async (
-	req,
-	res
-) => {
+const processNewCategoryForm = async (req, res) => {
 
-	const errors =
-		validationResult(req);
+const errors = validationResult(req);
 
-	if (
-		!errors.isEmpty()
-	) {
+if (!errors.isEmpty()) {
+  errors.array().forEach(error => {
+				req.flash('error', error.msg);
+			});
+ return res.redirect('/new-category');
+}
 
-		errors.array().forEach(
-			error => {
+	const {name} = req.body;
 
-				req.flash(
-					'error',
-					error.msg
-				);
+	const newCategoryId = await createCategory(name);
 
-			}
-		);
+	req.flash('success', 'Category created successfully!');
 
-		return res.redirect(
-			'/new-category'
-		);
-
-	}
-
-	const {
-		name
-	} = req.body;
-
-	const newCategoryId =
-		await createCategory(
-			name
-		);
-
-	req.flash(
-		'success',
-		'Category created successfully!'
-	);
-
-	res.redirect(
-		`/category/${newCategoryId}`
-	);
+	res.redirect(`/category/${newCategoryId}`);
 
 };
 

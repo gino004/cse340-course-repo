@@ -159,11 +159,9 @@ const processEditOrganizationForm = async (req, res) => {
 		logoFilename
 	);
 
-	req.flash('success', 'Organization updated successfully!'
-	);
+	req.flash('success', 'Organization updated successfully!');
 
-	res.redirect(`/organization/${organizationId}`
-	);
+	res.redirect(`/organization/${organizationId}`);
 
 };
 
