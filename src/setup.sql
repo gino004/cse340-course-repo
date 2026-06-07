@@ -1,3 +1,8 @@
+-- This code is a backup of the database to be reused whenever it is necessary 
+-- to migrate or restore the SQL code on a platform.
+
+
+
 -- ========================================
 -- Create organization table
 -- ========================================
