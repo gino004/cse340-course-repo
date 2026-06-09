@@ -6,6 +6,8 @@ import { showHomePage } from './controllers/index.js';
 
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, showEditOrganizationForm, processEditOrganizationForm, organizationValidation } from './controllers/organizations.js';
 
+import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout } from './controllers/users.js';
+
 import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm, projectValidation } from './controllers/projects.js';
 
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm, categoryValidation } from './controllers/categories.js';
@@ -29,6 +31,16 @@ router.post('/new-organization', organizationValidation, processNewOrganizationF
 router.get('/edit-organization/:id', showEditOrganizationForm);
 
 router.post('/edit-organization/:id', processEditOrganizationForm);
+
+router.get('/register', showUserRegistrationForm);
+
+router.post('/register', processUserRegistrationForm);
+
+router.get('/login', showLoginForm);
+
+router.post('/login', processLoginForm);
+
+router.get('/logout', processLogout);
 
 router.get('/projects', showProjectsPage);
 

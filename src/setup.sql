@@ -262,16 +262,27 @@ VALUES
 (15, 3);
 
 
+-- ========================================
+-- Create roles table
+-- ========================================
 CREATE TABLE roles (
     role_id SERIAL PRIMARY KEY,
     role_name VARCHAR(50) UNIQUE NOT NULL,
     role_description TEXT
 );
 
+
+-- ========================================
+-- Insert sample data: Roles
+-- ========================================
 INSERT INTO roles (role_name, role_description) VALUES
     ('user', 'Standard user with basic access'),
     ('admin', 'Administrator with full system access');
 
+
+-- ========================================
+-- Create users table
+-- ========================================
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
