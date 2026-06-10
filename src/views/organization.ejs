@@ -26,15 +26,19 @@
 
 		</p>
 
-		<p>
+		<% if (user && user.role_name==='admin' ) { %>
 		
-			<a href="/edit-organization/<%= organizationDetails.organization_id %>">
+			<p>
 		
-				Edit Organization
+				<a href="/edit-organization/<%= organizationDetails.organization_id %>">
 		
-			</a>
+					Edit Organization
 		
-		</p>
+				</a>
+		
+			</p>
+		
+			<% } %>
 
 		<h3>Service Projects</h3>
 

@@ -42,12 +42,15 @@
 
 		</ul>
 
+	<% if (user && user.role_name==='admin' ) { %>
+	
 		<p>
 			<a href="/new-project">
 				Add New Project
 			</a>
 		</p>
-
+	
+		<% } %>
 	</main>
 
 	<%- include('partials/footer') %>
