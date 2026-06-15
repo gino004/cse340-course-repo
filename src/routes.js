@@ -8,7 +8,7 @@ import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganization
 
 import { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, requireRole, showDashboard, showUsersPage } from './controllers/users.js';
 
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm, projectValidation } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, showEditProjectForm, processEditProjectForm, projectValidation, volunteerForProject, removeVolunteerFromProject } from './controllers/projects.js';
 
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, showEditCategoryForm, processEditCategoryForm, categoryValidation } from './controllers/categories.js';
 
@@ -50,6 +50,10 @@ router.get('/users', requireRole('admin'), showUsersPage);
 router.get('/projects', showProjectsPage);
 
 router.get('/project/:id', showProjectDetailsPage);
+
+router.get('/project/:id/volunteer', requireLogin, volunteerForProject);
+
+router.get('/project/:id/remove-volunteer', requireLogin, removeVolunteerFromProject);
 
 router.get('/new-project', requireRole('admin'), showNewProjectForm);
 

@@ -70,6 +70,7 @@ const authenticateUser = async (email, password) => {
 	}
 
 	const isValidPassword = await verifyPassword(password, user.password_hash);
+	
 	if (!isValidPassword) {
 		return null;
 	}
